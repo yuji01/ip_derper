@@ -16,24 +16,57 @@ docker run --rm -d -p 50443:443 -p 3478:3478/udp yujibuzailai/ip_derper
 
 inserts this into tailscale ACLs: https://login.tailscale.com/admin/acls
 ```json
-"derpMap": {
-    "Regions": {
-        "900": {
-            "RegionID": 900,
-            "RegionCode": "my_private_derper",
-            "Nodes": [
-                {
-                    "Name": "1",
-                    "RegionID": 900,
-                    "HostName": "YOUR_SERVER_IP",
-                    "IPv4": "YOUR_SERVER_IP",
-                    "InsecureForTests": true,
-                    "DERPPort": 50443
-                }
-            ]
-        }
-    }
-}
+
+	// 自定义配置开始
+	"derpMap": {
+		//"OmitDefaultRegions": true, //禁用其他中转服务器
+		"Regions": {
+			"1":  null,
+			"2":  null,
+			"3":  null,
+			"4":  null,
+			"5":  null,
+			"6":  null,
+			"7":  null,
+			"8":  null,
+			"9":  null,
+			"10": null,
+			"11": null,
+			"12": null,
+			"13": null,
+			"14": null,
+			"15": null,
+			"16": null,
+			"17": null,
+			"18": null,
+			"19": null,
+			//"20": null, 香港V6不禁用
+			"21": null,
+			"22": null,
+			"23": null,
+			"24": null,
+			"25": null,
+			"901": {
+				"RegionID":   901,
+				"RegionCode": "Myself",
+				"RegionName": "Myself Derper",
+				"Nodes": [
+					{
+						"Name":             "901a",
+						"RegionID":         901,
+						"DERPPort":         50443, //服务器的端口
+						"IPv4":             "00000", //服务器的IP
+						"InsecureForTests": true,
+					},
+				],
+			},
+		},
+	},
+	// 自定义配置结束
+	// Define users and devices that can use Tailscale SSH.
+	"ssh": [
+
+
 ```
 
 enjoy :)

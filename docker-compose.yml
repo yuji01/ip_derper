@@ -1,6 +1,6 @@
 services:
   derper:
-    image: yujibuzailai/derper
+    image: yujibuzailai/ip_derper
     container_name: derper
     restart: always
     environment:

@@ -38,11 +38,13 @@ inserts this into tailscale ACLs: https://login.tailscale.com/admin/acls
 
 enjoy :)
 
-下载并修改
+1. 下载并修改
+```
 git clone https://github.com/yuji01/ip_derper.git
 cd ip_derper
 git clone https://github.com/tailscale/tailscale.git tailscale --depth 1
-找到 tailscale 仓库中的 cmd/derper/cert.go 文件，将与域名验证相关的内容删除或注释：
+```
+2. 找到 tailscale 仓库中的 cmd/derper/cert.go 文件，将与域名验证相关的内容删除或注释：
 
 ```
 ...
@@ -54,6 +56,6 @@ func (m *manualCertManager) getCertificate(hi *tls.ClientHelloInfo) (*tls.Certif
 }
 ...
 ```
-编译
+3. 编译
 docker build --no-cache -t yujibuzailai/ip_derper .
 

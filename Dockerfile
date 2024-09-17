@@ -36,7 +36,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
     && apk add openssl \
     && mkdir -p /app/certs/ \
-    && openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout /ssl/$DERP_HOSTNAME.key -out /ssl/$DERP_HOSTNAME.crt -subj "/CN=$DERP_HOSTNAME" -addext "subjectAltName=DNS:$DERP_HOSTNAME"
+    && openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout /ssl/derp.narutos.top.key -out /ssl/derp.narutos.top.crt -subj "/CN=derp.narutos.top" -addext "subjectAltName=DNS:derp.narutos.top"
 
 # 命令解释：
 # 创建软链接 解决二进制无法执行问题 Amd架构必须执行，Arm不需要执行
@@ -52,4 +52,4 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 #RUN openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout /ssl/derp.javaow.com.key -out /ssl/derp.javaow.com.crt -subj "/CN=derp.javaow.com" -addext "subjectAltName=DNS:derp.javaow.com"
 
 # 启动命令
-CMD ./derper -hostname $DERP_HOSTNAME -a :$DERP_PORT -certmode manual -certdir $DERP_CERTS --stun $DERP_STUN --verify-clients $ DERP_VERIFY_CLIENTS
+CMD ./derper -hostname derp.narutos.top -a :$DERP_PORT -certmode manual -certdir $DERP_CERTS --stun $DERP_STUN --verify-clients $ DERP_VERIFY_CLIENTS

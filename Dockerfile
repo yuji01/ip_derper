@@ -22,11 +22,11 @@ FROM alpine:latest
 WORKDIR /apps
 
 ENV LANG C.UTF-8 \
-    DERP_HOSTNAME=derp.narutos.top \
-    DERP_PORT=443 \
-    DERP_CERTS=/app/certs/ \
-    DERP_STUN=true \
-    DERP_VERIFY_CLIENTS=false
+    DERP_HOSTNAME derp.narutos.top \
+    DERP_PORT 443 \
+    DERP_CERTS /app/certs/ \
+    DERP_STUN true \
+    DERP_VERIFY_CLIENTS false
     
 COPY --from=builder /etc/derp/derper .
 

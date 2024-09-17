@@ -32,8 +32,10 @@ COPY --from=builder /etc/derp/derper .
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo 'Asia/Shanghai' > /etc/timezone \
-    && mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
-    && apk add openssl && mkdir $DERP_CERTS \
+    && mkdir /lib64 \
+    && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
+    && apk add openssl \
+    && mkdir $DERP_CERTS \
     && openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout /ssl/$DERP_HOSTNAME.key -out /ssl/$DERP_HOSTNAME.crt -subj "/CN=$DERP_HOSTNAME" -addext "subjectAltName=DNS:$DERP_HOSTNAME"
 
 # 命令解释：

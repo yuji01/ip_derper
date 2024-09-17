@@ -50,4 +50,4 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 #RUN openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout /ssl/derp.javaow.com.key -out /ssl/derp.javaow.com.crt -subj "/CN=derp.javaow.com" -addext "subjectAltName=DNS:derp.javaow.com"
 
 # 启动命令
-CMD ./derper -hostname derp.narutos.top -certmode manual -certdir /app/certs -a :$DERP_PORT --stun $DERP_STUN --verify-clients $DERP_VERIFY_CLIENTS
+CMD ./derper -http-port -1 -hostname derp.narutos.top -certmode manual -certdir /app/certs -a :$DERP_PORT --stun $DERP_STUN --verify-clients $DERP_VERIFY_CLIENTS

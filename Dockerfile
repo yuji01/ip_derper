@@ -22,7 +22,6 @@ FROM alpine:latest
 WORKDIR /apps
 
 ENV LANG C.UTF-8 \
-    DERP_HOSTNAME derp.narutos.top \
     DERP_PORT 443 \
     DERP_CERTS /app/certs \
     DERP_STUN true \
@@ -35,7 +34,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && mkdir /lib64 \
     && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
     && apk add openssl \
-    && mkdir -p /app/certs \
+    && mkdir -p $DERP_CERTS \
     && openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout $DERP_CERTS/derp.narutos.top.key -out $DERP_CERTS/derp.narutos.top.crt -subj "/CN=derp.narutos.top" -addext "subjectAltName=DNS:derp.narutos.top"
 
 # 命令解释：

@@ -24,6 +24,7 @@ WORKDIR /app
 ENV LANG C.UTF-8 \
     DERP_PORT 443 \
     DERP_STUN true \
+    DERP_STUN_PORT 3478 \
     DERP_VERIFY_CLIENTS false
     
 COPY --from=builder /etc/derp/derper .
@@ -50,4 +51,4 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 #RUN openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout /ssl/derp.javaow.com.key -out /ssl/derp.javaow.com.crt -subj "/CN=derp.javaow.com" -addext "subjectAltName=DNS:derp.javaow.com"
 
 # 启动命令
-CMD ./derper -http-port -1 -hostname derp.narutos.top -certmode manual -certdir /app/certs -a :$DERP_PORT --stun $DERP_STUN --verify-clients $DERP_VERIFY_CLIENTS
+CMD ./derper -a :$DERP_PORT -certdir /app/certs -certmode manual -derp -hostname derp.narutos.top -http-port -1 -stun $DERP_STUN -stun-port $DERP_STUN_PORT -verify-clients $DERP_VERIFY_CLIENTS

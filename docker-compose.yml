@@ -6,5 +6,6 @@ services:
     environment:
       - DERP_PORT=443 # derper运行端口
       - DERP_STUN=true # 是否开启stun，默认开启
+      - DERP_STUN_PORT=3478 # stun端口，默认3478
       - DERP_VERIFY_CLIENTS=false # 开启防止白嫖，本机需要先加入tailscale节点
     network_mode: "host"
